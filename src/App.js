@@ -1,7 +1,14 @@
 import "./App.css";
 
+import { Container } from "react-bootstrap";
+import MainNavbar from "./components/nav/Navbar";
+
 function App() {
-  return <div className="App">App</div>;
+  return (
+    <Container fluid>
+      <MainNavbar />
+    </Container>
+  );
 }
 
 export default App;
