@@ -18,7 +18,7 @@ function MainNavbar() {
       className="bg-body-tertiary"
     >
       <Container>
-        <Navbar.Brand href="#">Movie Ratings</Navbar.Brand>
+        <Navbar.Brand href="#">IMBD</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -26,7 +26,7 @@ function MainNavbar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#featured">Featured</Nav.Link>
+            <Nav.Link href="#featured">TV Series</Nav.Link>
             <Nav.Link href="#movies">Movies</Nav.Link>
           </Nav>
           {/* <Form className="d-flex" style={formStyles}> */}
