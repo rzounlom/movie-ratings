@@ -42,7 +42,7 @@ const MovieCard = ({ movie }) => {
         </Card.Text>
         <Card.Title>{movie.title}</Card.Title>
         <Card.Text>{movie.description.substring(0, 55)}...</Card.Text>
-        <Card.Text className="trailer-link">Trailer</Card.Text>
+        <Card.Text className="trailer-link">Watch Trailer</Card.Text>
       </Card.Body>
       {/* 
       <Card.Footer className="movie-actions">
