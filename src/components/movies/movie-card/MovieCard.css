@@ -1,4 +1,5 @@
 .movie-card {
+  height: 649px;
   transition: all 0.3s ease-in-out;
 }
 

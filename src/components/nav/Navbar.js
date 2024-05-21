@@ -2,12 +2,9 @@ import "./Navbar.css";
 
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-
-// const formStyles = {
-//   width: "80%",
-// };
 
 function MainNavbar() {
   return (
@@ -18,7 +15,9 @@ function MainNavbar() {
       className="bg-body-tertiary"
     >
       <Container>
-        <Navbar.Brand href="#">IMBD</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/"> IMBD</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -29,7 +28,6 @@ function MainNavbar() {
             <Nav.Link href="#featured">TV Series</Nav.Link>
             <Nav.Link href="#movies">Movies</Nav.Link>
           </Nav>
-          {/* <Form className="d-flex" style={formStyles}> */}
           <Form className="d-flex">
             <Form.Control
               type="search"

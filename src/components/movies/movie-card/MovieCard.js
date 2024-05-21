@@ -1,6 +1,7 @@
 import "./MovieCard.css";
 
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 // const testMovie = {
 //   id: 1,
@@ -28,42 +29,25 @@ const MovieCard = ({ movie }) => {
   };
 
   return (
-    <Card
-      className="movie-card"
-      border="info"
-      bg="dark"
-      text="light"
-      style={{ width: "18rem" }}
-    >
-      <Card.Img variant="top" src={movie.imgUrl} />
-      <Card.Body>
-        <Card.Text className="movie-rating">
-          {caluculateRating()} <br />
-        </Card.Text>
-        <Card.Title>{movie.title}</Card.Title>
-        <Card.Text>{movie.description.substring(0, 55)}...</Card.Text>
-        <Card.Text className="trailer-link">Watch Trailer</Card.Text>
-      </Card.Body>
-      {/* 
-      <Card.Footer className="movie-actions">
-        <Card.Link
-          className="action-btn"
-          href="#"
-          as={Button}
-          variant="outline-primary"
-        >
-          Edit
-        </Card.Link>
-        <Card.Link
-          className="action-btn"
-          href="#"
-          as={Button}
-          variant="outline-danger"
-        >
-          Delete
-        </Card.Link>
-      </Card.Footer> */}
-    </Card>
+    <Link to={`/movie/${movie.id}`}>
+      <Card
+        className="movie-card"
+        border="info"
+        bg="dark"
+        text="light"
+        style={{ width: "18rem" }}
+      >
+        <Card.Img variant="top" src={movie.imgUrl} />
+        <Card.Body>
+          <Card.Text className="movie-rating">
+            {caluculateRating()} <br />
+          </Card.Text>
+          <Card.Title>{movie.title}</Card.Title>
+          <Card.Text>{movie.description.substring(0, 55)}...</Card.Text>
+          <Card.Text className="trailer-link">Watch Trailer</Card.Text>
+        </Card.Body>
+      </Card>
+    </Link>
   );
 };
 
