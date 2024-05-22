@@ -1,7 +1,10 @@
 import "./MovieCard.css";
 
 import Card from "react-bootstrap/Card";
+import { FaPlay } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { MdOutlineStar } from "react-icons/md";
+import RatingModal from "../rating-modal/RatingModal";
 
 // const testMovie = {
 //   id: 1,
@@ -29,25 +32,29 @@ const MovieCard = ({ movie }) => {
   };
 
   return (
-    <Link to={`/movie/${movie.id}`}>
-      <Card
-        className="movie-card"
-        border="info"
-        bg="dark"
-        text="light"
-        style={{ width: "18rem" }}
-      >
-        <Card.Img variant="top" src={movie.imgUrl} />
-        <Card.Body>
-          <Card.Text className="movie-rating">
-            {caluculateRating()} <br />
-          </Card.Text>
-          <Card.Title>{movie.title}</Card.Title>
-          <Card.Text>{movie.description.substring(0, 55)}...</Card.Text>
-          <Card.Text className="trailer-link">Watch Trailer</Card.Text>
-        </Card.Body>
-      </Card>
-    </Link>
+    <Card
+      className="movie-card"
+      border="info"
+      bg="dark"
+      text="light"
+      style={{ width: "18rem" }}
+    >
+      <Card.Img variant="top" src={movie.imgUrl} />
+      <Card.Body>
+        <Card.Text className="movie-rating">
+          <MdOutlineStar size="2rem" /> {caluculateRating()}{" "}
+          <RatingModal movie={movie} />
+        </Card.Text>
+        <Card.Title>{movie.title}</Card.Title>
+        <Card.Text>{movie.description.substring(0, 55)}...</Card.Text>
+        <Link to={`/movie/${movie.id}`}>
+          <Card.Text className="trailer-link">
+            <FaPlay />
+            <span> Trailer</span>
+          </Card.Text>{" "}
+        </Link>
+      </Card.Body>
+    </Card>
   );
 };
 
