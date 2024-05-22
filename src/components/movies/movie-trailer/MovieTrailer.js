@@ -2,8 +2,11 @@ import "./MovieTrailer.css";
 
 import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
+import { MdOutlineStar } from "react-icons/md";
+import RatingModal from "../rating-modal/RatingModal";
 import ReactPlayer from "react-player";
 import Stack from "react-bootstrap/Stack";
+import { caluculateRating } from "../../../lib/utils/calculateRating";
 
 const MovieTrailer = ({ movie }) => {
   return (
@@ -23,6 +26,11 @@ const MovieTrailer = ({ movie }) => {
         <ListGroup>
           <ListGroup.Item>
             <label>Rating:</label>
+            <div className="rating">
+              <MdOutlineStar />
+              {caluculateRating(movie.ratings)}
+            </div>{" "}
+            <RatingModal movie={movie} />
           </ListGroup.Item>
           <ListGroup.Item style={{ display: "flex" }}>
             <label>Genre:</label>

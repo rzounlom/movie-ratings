@@ -5,6 +5,7 @@ import { FaPlay } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { MdOutlineStar } from "react-icons/md";
 import RatingModal from "../rating-modal/RatingModal";
+import { caluculateRating } from "../../../lib/utils/calculateRating";
 
 // const testMovie = {
 //   id: 1,
@@ -20,16 +21,16 @@ import RatingModal from "../rating-modal/RatingModal";
 // };
 
 const MovieCard = ({ movie }) => {
-  const caluculateRating = () => {
-    //calculate the average rating of the movie
-    const rating =
-      movie.ratings.reduce((acc, curr) => acc + curr, 0) / movie.ratings.length;
-    if (!rating) {
-      return 0;
-    }
+  // const caluculateRating = () => {
+  //   //calculate the average rating of the movie
+  //   const rating =
+  //     movie.ratings.reduce((acc, curr) => acc + curr, 0) / movie.ratings.length;
+  //   if (!rating) {
+  //     return 0;
+  //   }
 
-    return Math.floor(rating).toFixed(1);
-  };
+  //   return Math.floor(rating).toFixed(1);
+  // };
 
   return (
     <Card
@@ -42,7 +43,7 @@ const MovieCard = ({ movie }) => {
       <Card.Img variant="top" src={movie.imgUrl} />
       <Card.Body>
         <Card.Text className="movie-rating">
-          <MdOutlineStar size="2rem" /> {caluculateRating()}{" "}
+          <MdOutlineStar size="2rem" /> {caluculateRating(movie.ratings)}{" "}
           <RatingModal movie={movie} />
         </Card.Text>
         <Card.Title>{movie.title}</Card.Title>
