@@ -10,7 +10,7 @@ export const defaultMovies = [
     ratings: [10, 8, 8],
     imgUrl:
       "https://m.media-amazon.com/images/M/MV5BMDQ0NjgyN2YtNWViNS00YjA3LTkxNDktYzFkZTExZGMxZDkxXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_FMjpg_UX1000_.jpg",
-    trailorUrl: "https://www.youtube.com/watch?v=n9xhJrPXop4",
+    trailerUrl: "https://www.youtube.com/watch?v=n9xhJrPXop4",
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const defaultMovies = [
     ratings: [10, 10, 8],
     imgUrl:
       "https://m.media-amazon.com/images/M/MV5BZjQ0YjAyNWQtMjRjMC00NzMxLTlkNjEtYWQzNmQwNGRlMGJkXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
-    trailorUrl: "https://www.youtube.com/watch?v=0kQ8i2FpRDk",
+    trailerUrl: "https://www.youtube.com/watch?v=0kQ8i2FpRDk",
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ export const defaultMovies = [
     ratings: [7, 8, 8],
     imgUrl:
       "https://m.media-amazon.com/images/M/MV5BZGI4NTEwNTAtZDcwMi00MDkxLTg1OGYtNTZmMzE3ZDljNzVlXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_.jpg",
-    trailorUrl: "https://www.youtube.com/watch?v=Kdr5oedn7q8",
+    trailerUrl: "https://www.youtube.com/watch?v=Kdr5oedn7q8",
   },
   {
     id: 4,
@@ -49,7 +49,7 @@ export const defaultMovies = [
     ratings: [7, 8, 8],
     imgUrl:
       "https://m.media-amazon.com/images/M/MV5BNTk1MTdmYzctNzlkOS00ZTNmLWI4ZTMtMzc3OWFkMDI0MTJkXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
-    trailorUrl: "https://www.youtube.com/watch?v=VobTTbg-te0",
+    trailerUrl: "https://www.youtube.com/watch?v=VobTTbg-te0",
   },
   {
     id: 5,
@@ -61,7 +61,7 @@ export const defaultMovies = [
     genre: ["Adventure", "Drama"],
     ratings: [10, 5, 8],
     imgUrl: "https://i.imgur.com/Wu7TP8q.jpg",
-    trailorUrl: "https://www.youtube.com/watch?v=HIs9x49DK7I",
+    trailerUrl: "https://www.youtube.com/watch?v=HIs9x49DK7I",
   },
   {
     id: 6,
@@ -74,7 +74,7 @@ export const defaultMovies = [
     ratings: [8, 8, 8],
     imgUrl:
       "https://m.media-amazon.com/images/M/MV5BYTZmMzJhOTktNGJjOC00NDE0LThjNTItODQ0YjBjNzg2OWQ4XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
-    trailorUrl: "https://www.youtube.com/watch?v=TCwmXY_f-e0",
+    trailerUrl: "https://www.youtube.com/watch?v=TCwmXY_f-e0",
   },
   {
     id: 7,
@@ -87,7 +87,7 @@ export const defaultMovies = [
     ratings: [5, 8, 7],
     imgUrl:
       "https://m.media-amazon.com/images/M/MV5BNTk3NTEwOWItOWIxYy00YzMwLTg3MWQtNmU5MmYwMTMwZTJkXkEyXkFqcGdeQXVyMTY3ODkyNDkz._V1_.jpg",
-    trailorUrl: "https://www.youtube.com/watch?v=ss2KvK-w6w8",
+    trailerUrl: "https://www.youtube.com/watch?v=ss2KvK-w6w8",
   },
   {
     id: 8,
@@ -99,6 +99,6 @@ export const defaultMovies = [
     genre: ["Action", "Adventure", "Comedy"],
     ratings: [9, 8, 6],
     imgUrl: "https://i.redd.it/vdj798khovqc1.jpeg",
-    trailorUrl: "https://www.youtube.com/watch?v=ss2KvK-w6w8",
+    trailerUrl: "https://www.youtube.com/watch?v=ss2KvK-w6w8",
   },
 ];

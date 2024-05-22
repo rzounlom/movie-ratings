@@ -1,6 +1,7 @@
 import "./FeaturedMovies.css";
 
 import Carousel from "react-bootstrap/Carousel";
+import { Link } from "react-router-dom";
 
 const FeaturedMovies = ({ movies }) => {
   console.log({ movies });
@@ -16,7 +17,9 @@ const FeaturedMovies = ({ movies }) => {
             </div>
 
             <Carousel.Caption>
-              <h3>Watch Trailer</h3>
+              <Link to={`/movie/${movie.id}`}>
+                <h3>Watch Trailer</h3>
+              </Link>
             </Carousel.Caption>
           </Carousel.Item>
         ))}
