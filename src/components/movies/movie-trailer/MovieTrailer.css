@@ -33,10 +33,6 @@
   align-items: center;
 }
 
-.list-group-item:nth-of-type(1) svg {
-  color: yellow;
-}
-
 .list-group-item:nth-of-type(1) .rating {
   display: flex;
   align-items: center;

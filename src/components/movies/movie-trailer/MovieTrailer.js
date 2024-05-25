@@ -27,7 +27,7 @@ const MovieTrailer = ({ movie }) => {
           <ListGroup.Item>
             <label>Rating:</label>
             <div className="rating">
-              <MdOutlineStar />
+              <MdOutlineStar color="yellow" />
               {caluculateRating(movie.ratings)}
             </div>{" "}
             <RatingModal movie={movie} />
