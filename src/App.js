@@ -29,10 +29,9 @@ function App() {
       <MainNavbar />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/movie/:id" component={SingleMoviePage} />
-        <Route exact path="/movie/:id" component={SingleMoviePage} />
-        <Route exact path="/movies" component={MoviesPage} />
-        <Route exact path="/tv-series" component={TvSeriesPage} />
+        <Route path="/movies" component={MoviesPage} />
+        <Route path="/movie/:id" component={SingleMoviePage} />
+        <Route path="/tv-series" component={TvSeriesPage} />
       </Switch>
     </Container>
   );

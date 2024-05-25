@@ -25,12 +25,10 @@ function MainNavbar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            {/* <Nav.Link>TV series</Nav.Link>
-            <Nav.Link>Movies</Nav.Link> */}
-            <Link className="nav-link" to="movies">
+            <Link className="nav-link" to="/movies">
               Movies
             </Link>
-            <Link className="nav-link" to="tv-series">
+            <Link className="nav-link" to="/tv-series">
               TV Series
             </Link>
           </Nav>
