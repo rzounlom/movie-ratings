@@ -1,2 +1,10 @@
 .movies-page {
+  width: 100%;
+  overflow: hidden;
+}
+
+.movies-page h1 {
+  margin-top: 25px;
+  text-align: center;
+  color: white;
 }

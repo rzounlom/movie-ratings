@@ -8,7 +8,7 @@ import MainNavbar from "./components/nav/Navbar";
 import MoviesPage from "./components/pages/movies/MoviesPage";
 import SingleMoviePage from "./components/pages/single-movie/SingleMoviePage";
 import { ToastContainer } from "react-toastify";
-import TvSeriesPage from "./components/pages/tv-series/TvSeriesPage";
+import TvSeriesPage from "./components/pages/tv-series/TVSeriesPage";
 
 function App() {
   return (

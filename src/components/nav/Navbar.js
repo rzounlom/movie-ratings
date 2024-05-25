@@ -25,8 +25,14 @@ function MainNavbar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#featured">TV Series</Nav.Link>
-            <Nav.Link href="#movies">Movies</Nav.Link>
+            {/* <Nav.Link>TV series</Nav.Link>
+            <Nav.Link>Movies</Nav.Link> */}
+            <Link className="nav-link" to="movies">
+              Movies
+            </Link>
+            <Link className="nav-link" to="tv-series">
+              TV Series
+            </Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control
