@@ -1,6 +1,6 @@
 import "./MovieList.css";
 
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 
 import MovieCard from "../movie-card/MovieCard";
 
@@ -9,11 +9,7 @@ const MovieList = ({ movies }) => {
   return (
     <Container className="movie-list">
       <Row xs={1} sm={2} md={2} lg={4} className="g-5 d-flex">
-        {/* <Col style={{ display: "flex", justifyContent: "center" }}>
-          <MovieCard />
-        </Col> */}
-
-        {movies &&
+        {movies ? (
           movies.map((movie) => (
             <Col
               key={movie.id}
@@ -21,7 +17,12 @@ const MovieList = ({ movies }) => {
             >
               <MovieCard movie={movie} />
             </Col>
-          ))}
+          ))
+        ) : (
+          <Spinner animation="border" role="status" size="lg" variant="info">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        )}
       </Row>
     </Container>
   );

@@ -1,6 +1,10 @@
 .movies-page {
   width: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .movies-page h1 {

@@ -1,6 +1,10 @@
 .tv-series-page {
   width: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .tv-series-page h1 {
