@@ -11,3 +11,15 @@ export const getMovieById = async (id) => {
   const response = await fetch(`${BASE_URL}/${id}`);
   return response.json();
 };
+
+export const updateMovie = async (id, updatedMovie) => {
+  // Updating a movie by its ID
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedMovie),
+  });
+  return response.json();
+};

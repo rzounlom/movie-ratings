@@ -17,7 +17,7 @@ const SingleMoviePage = () => {
     try {
       const movie = await getMovieById(id);
       setMovie(movie);
-      console.log(movie);
+      // console.log(movie);
     } catch (error) {
       console.error(error);
     } finally {
@@ -34,7 +34,6 @@ const SingleMoviePage = () => {
   return (
     <Container className="single-movie-page">
       {loading ? <LoadSpinner /> : <MovieTrailer movie={movie} />}
-      {/* <LoadSpinner /> */}
     </Container>
   );
 };
