@@ -14,7 +14,6 @@ const RatingModal = ({ movie }) => {
   const [hover, setHover] = useState(0);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  console.log({ rating });
 
   const handleClose = () => {
     setRating(0);
@@ -28,8 +27,7 @@ const RatingModal = ({ movie }) => {
     setLoading(true);
     const updatedMovie = { ...movie, ratings: [...movie.ratings, rating] }; // Create a new movie object with the updated rating
     try {
-      await updateMovie(movie.id, updatedMovie);
-      history.go(0); // reload the page
+      await updateMovie(movie.id, updatedMovie); // Update the movie in the database
     } catch (error) {
       console.error(error);
     } finally {
@@ -38,6 +36,7 @@ const RatingModal = ({ movie }) => {
     }
   };
 
+  console.log({ history });
   return (
     <div className="rating-modal">
       <Button
