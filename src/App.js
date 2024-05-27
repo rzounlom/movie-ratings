@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 
 import { Container } from "react-bootstrap";
 import HomePage from "./components/pages/home/HomePage";
@@ -11,6 +11,8 @@ import { ToastContainer } from "react-toastify";
 import TvSeriesPage from "./components/pages/tv-series/TVSeriesPage";
 
 function App() {
+  const history = useHistory();
+  console.log({ history });
   return (
     <Container fluid className="App">
       <ToastContainer

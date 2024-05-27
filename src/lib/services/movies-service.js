@@ -23,3 +23,15 @@ export const updateMovie = async (id, updatedMovie) => {
   });
   return response.json();
 };
+
+export const createMovie = async (newMovie) => {
+  // Creating a new movie
+  const response = await fetch(BASE_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newMovie),
+  });
+  return response.json();
+};

@@ -2,6 +2,7 @@ form {
   width: 80%;
 }
 
-a.nav-link:hover {
+.nav-link:hover {
+  cursor: pointer;
   color: #6ea8fe;
 }
