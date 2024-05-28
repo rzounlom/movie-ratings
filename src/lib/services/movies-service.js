@@ -6,7 +6,7 @@ export const getMovies = async () => {
   return response.json();
 };
 
-export const getMovieById = async (id) => {
+export const getMovie = async (id) => {
   // Fetching a single movie by its ID
   const response = await fetch(`${BASE_URL}/${id}`);
   return response.json();

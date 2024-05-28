@@ -5,17 +5,17 @@ import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import LoadSpinner from "../../common/LoadSpinner";
 import MovieTrailer from "../../movies/movie-trailer/MovieTrailer";
-import { getMovieById } from "../../../lib/services/movies-service";
+import { getMovie } from "../../../lib/services/movies-service";
 import { useParams } from "react-router-dom";
 
 const SingleMoviePage = () => {
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const getMovie = async (id) => {
+  const fetchMovie = async (id) => {
     setLoading(true);
     try {
-      const movie = await getMovieById(id);
+      const movie = await getMovie(id);
       setMovie(movie);
       // console.log(movie);
     } catch (error) {
@@ -28,12 +28,16 @@ const SingleMoviePage = () => {
   const { id } = useParams(); // useParams is a hook that returns an object of key/value pairs of URL parameters. Use it to access the id parameter from the URL.
 
   useEffect(() => {
-    getMovie(id);
+    fetchMovie(id);
   }, [id]);
 
   return (
     <Container className="single-movie-page">
-      {loading ? <LoadSpinner /> : <MovieTrailer movie={movie} />}
+      {loading ? (
+        <LoadSpinner />
+      ) : (
+        <MovieTrailer movie={movie} fetchMovie={fetchMovie} />
+      )}
     </Container>
   );
 };

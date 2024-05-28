@@ -1,27 +1,30 @@
-import "./CreateMovieModal.css";
+import "./EditMovieModal.css";
 
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 
-import { FaPlus } from "react-icons/fa6";
-import { createMovie } from "../../../lib/services/movies-service";
 import { movieGenres } from "../../../data/genres";
 import { toast } from "react-toastify";
+import { updateMovie } from "../../../lib/services/movies-service";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
-const CreateMovieModal = () => {
+const EditMoveModal = ({ movie, fetchMovie }) => {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
-  const [genres, setGenres] = useState([]);
+  const [genres, setGenres] = useState(movie.genre);
+
   const [movieData, setMovieData] = useState({
-    type: "movie",
-    title: "",
-    description: "",
-    year: "",
-    imgUrl: "",
-    trailerUrl: "",
+    type: movie.type,
+    title: movie.title,
+    description: movie.description,
+    year: movie.year,
+    imgUrl: movie.imgUrl,
+    trailerUrl: movie.trailerUrl,
   });
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleMovieDataChange = (e) => {
     setMovieData({ ...movieData, [e.target.name]: e.target.value });
@@ -47,12 +50,15 @@ const CreateMovieModal = () => {
   };
 
   const submitMovie = async (e) => {
+    console.log({ movieData, genres });
     e.preventDefault();
     // setLoading(true);
     const inputsValidated = Object.values(movieData).every(
       // Check if all fields are filled
       (val) => val.length > 0
     );
+
+    console.log({ inputsValidated });
 
     if (!inputsValidated || genres.length === 0) {
       toast.error("Please fill in all fields");
@@ -61,32 +67,26 @@ const CreateMovieModal = () => {
 
     try {
       //   console.log({ movieData, genres });
-      const newMovie = { ...movieData, genre: genres, ratings: [] };
-      // console.log({ newMovie });
-      await createMovie(newMovie);
-      if (history.location.pathname === "/") {
-        history.go(0);
-      } else {
-        toast.success("Movie added successfully");
-      }
+      const modifiedMovie = {
+        ...movie,
+        ...movieData,
+        genre: genres,
+      };
+      console.log({ modifiedMovie });
+      await updateMovie(movie.id, modifiedMovie);
+      history.go(0);
     } catch (error) {
     } finally {
-      setMovieData({
-        type: "movie",
-        title: "",
-        description: "",
-        year: "",
-        imgUrl: "",
-        trailerUrl: "",
-      });
       setLoading(false);
       setShow(false);
     }
   };
 
   return (
-    <div className="create-movie-modal">
-      <FaPlus onClick={() => setShow(true)} />
+    <>
+      <Button variant="outline-primary" onClick={handleShow}>
+        Edit
+      </Button>
 
       <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
@@ -100,6 +100,7 @@ const CreateMovieModal = () => {
                 <Form.Select
                   aria-label="Default select example"
                   name="type"
+                  value={movieData.type}
                   onChange={handleMovieDataChange}
                 >
                   <option value="movie">Movie</option>
@@ -111,6 +112,7 @@ const CreateMovieModal = () => {
                 <Form.Control
                   name="title"
                   type="text"
+                  value={movieData.title}
                   placeholder="Dune 2"
                   onChange={handleMovieDataChange}
                 />
@@ -120,6 +122,7 @@ const CreateMovieModal = () => {
                 <Form.Control
                   name="year"
                   type="text"
+                  value={movieData.year}
                   placeholder="2024"
                   onChange={handleMovieDataChange}
                 />
@@ -140,6 +143,7 @@ const CreateMovieModal = () => {
                     label={genre}
                     value={genre}
                     onChange={handleGenreChange}
+                    checked={genres?.includes(genre)}
                   />
                 </Form.Group>
               ))}
@@ -151,6 +155,7 @@ const CreateMovieModal = () => {
                 name="description"
                 as="textarea"
                 type="text"
+                value={movieData.description}
                 placeholder="In a galaxy far, far, away..."
                 onChange={handleMovieDataChange}
               />
@@ -160,6 +165,7 @@ const CreateMovieModal = () => {
               <Form.Control
                 name="imgUrl"
                 type="text"
+                value={movieData.imgUrl}
                 placeholder="https://www.example.com/image.jpg"
                 onChange={handleMovieDataChange}
               />
@@ -169,28 +175,28 @@ const CreateMovieModal = () => {
               <Form.Control
                 name="trailerUrl"
                 type="text"
+                value={movieData.trailerUrl}
                 placeholder="https://www.example.com/image.jpg"
                 onChange={handleMovieDataChange}
               />
             </Form.Group>
-
-            <Button variant="outline-secondary" onClick={() => setShow(false)}>
+            <Button variant="outline-secondary" onClick={handleClose}>
               Cancel
             </Button>
+
             <Button
               variant="outline-primary"
-              type="submit"
-              style={{ marginLeft: "10px" }}
               onClick={submitMovie}
               disabled={loading}
+              style={{ marginLeft: "10px" }}
             >
               {loading ? "...Saving movie" : "Save Movie"}
             </Button>
           </Form>
         </Modal.Body>
       </Modal>
-    </div>
+    </>
   );
 };
 
-export default CreateMovieModal;
+export default EditMoveModal;

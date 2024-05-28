@@ -1,6 +1,8 @@
 import "./MovieTrailer.css";
 
 import Badge from "react-bootstrap/Badge";
+import DeleteMovieModal from "../delete-movie-modal/DeleteMovieModal";
+import EditMoveModal from "../edit-movie-modal/EditMoveModal";
 import ListGroup from "react-bootstrap/ListGroup";
 import { MdOutlineStar } from "react-icons/md";
 import RatingModal from "../rating-modal/RatingModal";
@@ -8,7 +10,7 @@ import ReactPlayer from "react-player";
 import Stack from "react-bootstrap/Stack";
 import { caluculateRating } from "../../../lib/utils/calculateRating";
 
-const MovieTrailer = ({ movie }) => {
+const MovieTrailer = ({ movie, fetchMovie }) => {
   return (
     <div className="movie-trailer">
       <h1>
@@ -25,12 +27,16 @@ const MovieTrailer = ({ movie }) => {
       <div className="movie-details">
         <ListGroup>
           <ListGroup.Item>
-            <label>Rating:</label>
             <div className="rating">
+              <label>Rating:</label>
               <MdOutlineStar color="yellow" />
               {caluculateRating(movie.ratings)}
-            </div>{" "}
-            <RatingModal movie={movie} />
+              <RatingModal movie={movie} />
+            </div>
+            <div className="movie-actions">
+              <EditMoveModal movie={movie} fetchMovie={fetchMovie} />
+              <DeleteMovieModal movie={movie} />
+            </div>
           </ListGroup.Item>
           <ListGroup.Item style={{ display: "flex" }}>
             <label>Genre:</label>
@@ -47,7 +53,8 @@ const MovieTrailer = ({ movie }) => {
             </Stack>
           </ListGroup.Item>
           <ListGroup.Item>
-            <label>Description:</label> {movie.description}
+            <label>Description:</label>
+            {movie.description}
           </ListGroup.Item>
         </ListGroup>
       </div>

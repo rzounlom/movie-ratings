@@ -1,4 +1,4 @@
-export const moveGenres = [
+export const movieGenres = [
   "Action",
   "Adventure",
   "Animation",
@@ -15,7 +15,7 @@ export const moveGenres = [
   "Musical",
   "Mystery",
   "Romance",
-  "Sci-Fi",
+  "Science Fiction",
   "Sport",
   "Thriller",
   "War",

@@ -5,6 +5,7 @@
   justify-content: center;
   margin-top: 20px;
   padding-bottom: 10px;
+  width: 100%;
 }
 
 .movie-trailer h1 {
@@ -23,9 +24,19 @@
   color: cyan;
 }
 
+.list-group {
+  width: 100%;
+}
+
 .list-group-item {
   background-color: rgb(43, 43, 43);
   color: white;
+}
+
+.list-group-item:nth-of-type(1) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .list-group-item:nth-of-type(1) {
@@ -34,7 +45,17 @@
 }
 
 .list-group-item:nth-of-type(1) .rating {
+  height: 100%;
   display: flex;
   align-items: center;
   margin-left: 5px;
+}
+
+.movie-details .movie-actions {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.movie-details .movie-actions button:nth-of-type(1) {
+  margin-right: 10px;
 }
