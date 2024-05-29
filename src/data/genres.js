@@ -1,3 +1,4 @@
+// Desc: List of genres for movies
 export const movieGenres = [
   "Action",
   "Adventure",

@@ -1,3 +1,4 @@
+// Data for the movies
 export const defaultMovies = [
   {
     id: 1,

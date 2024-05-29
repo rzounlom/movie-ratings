@@ -1,4 +1,4 @@
-const BASE_URL = "https://66523ab6813d78e6d6d4fe50.mockapi.io/movies";
+const BASE_URL = "https://66523ab6813d78e6d6d4fe50.mockapi.io/movies"; // API Base URL
 
 export const getMovies = async () => {
   // Fetching all movies from the API
@@ -19,7 +19,7 @@ export const updateMovie = async (id, updatedMovie) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(updatedMovie),
+    body: JSON.stringify(updatedMovie), //convert the object to a JSON string
   });
   return response.json();
 };
@@ -31,7 +31,7 @@ export const createMovie = async (newMovie) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(newMovie),
+    body: JSON.stringify(newMovie), //convert the object to a JSON string
   });
   return response.json();
 };

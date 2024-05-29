@@ -18,10 +18,10 @@ const MovieCard = ({ movie }) => {
     >
       <Card.Img variant="top" src={movie.imgUrl} />
       <Card.Body>
-        <Card.Text className="movie-rating">
+        <Card.Body className="movie-rating">
           <MdOutlineStar size="2rem" /> {caluculateRating(movie.ratings)}{" "}
           <RatingModal movie={movie} />
-        </Card.Text>
+        </Card.Body>
         <Card.Title>{movie.title}</Card.Title>
         <Card.Text>{movie.description.substring(0, 55)}...</Card.Text>
         <Link to={`/movie/${movie.id}`}>
