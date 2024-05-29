@@ -9,8 +9,9 @@ import Navbar from "react-bootstrap/Navbar";
 import { useLocation } from "react-router-dom";
 
 function MainNavbar({ setSearch, search }) {
-  const location = useLocation();
+  const location = useLocation(); //Hook to get the current location (URL)
 
+  //Function to handle the search input
   const handleSearch = (e) => {
     setSearch(e.target.value);
     // console.log("search from Navbar:", search);

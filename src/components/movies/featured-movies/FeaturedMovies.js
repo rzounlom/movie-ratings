@@ -10,19 +10,23 @@ const FeaturedMovies = ({ movies }) => {
     <div className="featured-movies">
       <h1>Featured</h1>
       <Carousel>
-        {movies.map((movie) => (
-          <Carousel.Item key={movie.id}>
-            <div className="item-img">
-              <img src={movie.imgUrl} alt="movie tab" />
-            </div>
+        {movies.map(
+          (
+            movie //Map through the movies and display them in the Carousel
+          ) => (
+            <Carousel.Item key={movie.id}>
+              <div className="item-img">
+                <img src={movie.imgUrl} alt="movie tab" />
+              </div>
 
-            <Carousel.Caption>
-              <Link to={`/movie/${movie.id}`}>
-                <h3>Watch Trailer</h3>
-              </Link>
-            </Carousel.Caption>
-          </Carousel.Item>
-        ))}
+              <Carousel.Caption>
+                <Link to={`/movie/${movie.id}`}>
+                  <h3>Watch Trailer</h3>
+                </Link>
+              </Carousel.Caption>
+            </Carousel.Item>
+          )
+        )}
       </Carousel>
     </div>
   );

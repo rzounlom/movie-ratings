@@ -45,11 +45,16 @@ const MovieTrailer = ({ movie, fetchMovie }) => {
               gap={2}
               style={{ marginLeft: "5px", overflowX: "auto" }}
             >
-              {movie.genre?.map((genre, idx) => (
-                <Badge key={`badge-${idx}`} bg="primary">
-                  {genre}
-                </Badge>
-              ))}
+              {movie.genre?.map(
+                (
+                  genre,
+                  idx //Map through the genres and display them as badges
+                ) => (
+                  <Badge key={`badge-${idx}`} bg="primary">
+                    {genre}
+                  </Badge>
+                )
+              )}
             </Stack>
           </ListGroup.Item>
           <ListGroup.Item>

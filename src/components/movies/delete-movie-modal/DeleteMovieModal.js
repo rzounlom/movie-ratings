@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
 const DeleteMovieModal = ({ movie }) => {
-  const history = useHistory();
+  const history = useHistory(); //Hook to get the history object
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
 
@@ -17,7 +17,7 @@ const DeleteMovieModal = ({ movie }) => {
     try {
       setLoading(true);
       await deleteMovie(movie.id);
-      console.log("Deleting movie with id", movie.id);
+      // console.log("Deleting movie with id", movie.id);
       history.push("/"); // Redirecting to the home page
       toast.success("Movie deleted successfully!");
     } catch (error) {

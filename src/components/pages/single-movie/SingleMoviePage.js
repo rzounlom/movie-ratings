@@ -9,13 +9,13 @@ import { getMovie } from "../../../lib/services/movies-service";
 import { useParams } from "react-router-dom";
 
 const SingleMoviePage = () => {
-  const [movie, setMovie] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [movie, setMovie] = useState({}); //State to store the movie
+  const [loading, setLoading] = useState(false); //State to store the loading status
 
   const fetchMovie = async (id) => {
     setLoading(true);
     try {
-      const movie = await getMovie(id);
+      const movie = await getMovie(id); // getMovie is a function that fetches a single movie from the API by its id.
       setMovie(movie);
       // console.log(movie);
     } catch (error) {
@@ -28,11 +28,12 @@ const SingleMoviePage = () => {
   const { id } = useParams(); // useParams is a hook that returns an object of key/value pairs of URL parameters. Use it to access the id parameter from the URL.
 
   useEffect(() => {
-    fetchMovie(id);
+    fetchMovie(id); // Call the fetchMovie function when the component first mounts
   }, [id]);
 
   return (
     <Container className="single-movie-page">
+      {/* Show loading spinner while making APi request */}
       {loading ? (
         <LoadSpinner />
       ) : (

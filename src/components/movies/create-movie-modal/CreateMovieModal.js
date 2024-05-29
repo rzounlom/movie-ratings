@@ -15,7 +15,8 @@ const CreateMovieModal = () => {
   const [show, setShow] = useState(false);
   const [genres, setGenres] = useState([]);
   const [movieData, setMovieData] = useState({
-    type: "movie",
+    //State to store the movie data
+    type: "movie", //Default value for the type
     title: "",
     description: "",
     year: "",
@@ -24,25 +25,30 @@ const CreateMovieModal = () => {
   });
 
   const handleMovieDataChange = (e) => {
-    setMovieData({ ...movieData, [e.target.name]: e.target.value });
-    console.log({ movieData });
+    //Function to handle the change in the movie data
+    setMovieData({ ...movieData, [e.target.name]: e.target.value }); //Set the movie data to the state based on the input field
+    // console.log({ movieData });
   };
 
   const handleGenreChange = (e) => {
+    //Function to handle the change in the genre
     // console.log({
     //   checked: e.target.checked,
     //   value: e.target.value,
     // });
 
     if (e.target.checked && genres.includes(e.target.value)) {
-      console.log("checked and already added; do nothing", { genres });
+      //If the genre is checked and already added, do nothing
+      // console.log("checked and already added; do nothing", { genres });
       return;
     } else if (!e.target.checked && genres.includes(e.target.value)) {
+      //If the genre is not checked and already added, remove it
       setGenres(genres.filter((genre) => genre !== e.target.value));
-      console.log("not checked and already added; need to remove", { genres });
+      // console.log("not checked and already added; need to remove", { genres });
     } else {
+      //If the genre is checked and not added, add it
       setGenres([...genres, e.target.value]);
-      console.log("checked and not in. just add it", { genres });
+      // console.log("checked and not in. just add it", { genres });
     }
   };
 
@@ -51,11 +57,13 @@ const CreateMovieModal = () => {
     // setLoading(true);
     const inputsValidated = Object.values(movieData).every(
       // Check if all fields are filled
+      // Check if all fields are filled
       (val) => val.length > 0
     );
 
     if (!inputsValidated || genres.length === 0) {
-      toast.error("Please fill in all fields");
+      // Check if all fields are filled and at least one genre is selected
+      toast.error("Please fill in all fields"); // toast error message if not filled
       return;
     }
 
@@ -65,13 +73,15 @@ const CreateMovieModal = () => {
       // console.log({ newMovie });
       await createMovie(newMovie);
       if (history.location.pathname === "/") {
-        history.go(0);
+        // Check if the user is on the home page
+        history.go(0); // Refresh the page if user is on the home page
       } else {
-        toast.success("Movie added successfully");
+        toast.success("Movie added successfully"); // toast success message if movie is added successfully
       }
     } catch (error) {
     } finally {
       setMovieData({
+        // Reset the movie data
         type: "movie",
         title: "",
         description: "",
@@ -79,8 +89,8 @@ const CreateMovieModal = () => {
         imgUrl: "",
         trailerUrl: "",
       });
-      setLoading(false);
-      setShow(false);
+      setLoading(false); // Reset the loading state
+      setShow(false); // Close the modal
     }
   };
 
@@ -128,21 +138,26 @@ const CreateMovieModal = () => {
 
             <Row>
               <Form.Label>Genre(s)</Form.Label>
-              {movieGenres.map((genre, idx) => (
-                <Form.Group
-                  as={Col}
-                  key={genre}
-                  className="mb-3"
-                  controlId={`formGenre${idx}`}
-                >
-                  <Form.Check
-                    type="checkbox"
-                    label={genre}
-                    value={genre}
-                    onChange={handleGenreChange}
-                  />
-                </Form.Group>
-              ))}
+              {movieGenres.map(
+                (
+                  genre,
+                  idx // Map through the genres and display them as checkboxes
+                ) => (
+                  <Form.Group
+                    as={Col}
+                    key={genre}
+                    className="mb-3"
+                    controlId={`formGenre${idx}`}
+                  >
+                    <Form.Check
+                      type="checkbox"
+                      label={genre}
+                      value={genre}
+                      onChange={handleGenreChange} // onChange event to handle the change in the genre
+                    />
+                  </Form.Group>
+                )
+              )}
             </Row>
 
             <Form.Group className="mb-3">
@@ -182,7 +197,7 @@ const CreateMovieModal = () => {
               type="submit"
               style={{ marginLeft: "10px" }}
               onClick={submitMovie}
-              disabled={loading}
+              disabled={loading} // Disable the button if the form is submitting
             >
               {loading ? "...Saving movie" : "Save Movie"}
             </Button>
