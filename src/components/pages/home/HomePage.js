@@ -7,8 +7,9 @@ import LoadSpinner from "../../common/LoadSpinner";
 import MovieList from "../../movies/movie-list/MovieList";
 import { getMovies } from "../../../lib/services/movies-service";
 
-const HomePage = () => {
+const HomePage = ({ search }) => {
   const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const getAllMovies = async () => {
@@ -16,6 +17,7 @@ const HomePage = () => {
       setLoading(true);
       const movies = await getMovies();
       setMovies(movies);
+      setFilteredMovies(movies);
     } catch (error) {
       console.error(error);
     } finally {
@@ -27,6 +29,18 @@ const HomePage = () => {
     getAllMovies();
   }, []);
 
+  useEffect(() => {
+    // console.log("search from HomePage:", search);
+    if (search) {
+      const filteredMovies = movies.filter((movie) =>
+        movie.title.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredMovies(filteredMovies);
+    } else {
+      setFilteredMovies(movies);
+    }
+  }, [search, movies]);
+
   return (
     <div className="home-page">
       <div className="featured">
@@ -36,7 +50,7 @@ const HomePage = () => {
           <FeaturedMovies movies={movies.slice(0, 3)} />
         )}
       </div>
-      <MovieList movies={movies} />
+      <MovieList movies={filteredMovies} />
     </div>
   );
 };

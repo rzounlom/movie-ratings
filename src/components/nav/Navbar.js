@@ -6,8 +6,18 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useLocation } from "react-router-dom";
 
-function MainNavbar() {
+function MainNavbar({ setSearch, search }) {
+  const location = useLocation();
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    // console.log("search from Navbar:", search);
+  };
+
+  // console.log("location from Navbar:", location);
+
   return (
     <Navbar
       bg="dark"
@@ -33,12 +43,16 @@ function MainNavbar() {
             </div>
           </Nav>
           <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
+            {location.pathname === "/" && ( // Only show search input on the home page
+              <Form.Control
+                onChange={handleSearch}
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+                value={search}
+              />
+            )}
           </Form>
         </Navbar.Collapse>
       </Container>
