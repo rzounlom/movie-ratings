@@ -35,3 +35,11 @@ export const createMovie = async (newMovie) => {
   });
   return response.json();
 };
+
+export const deleteMovie = async (id) => {
+  // Deleting a movie by its ID
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  });
+  return response.json();
+};
