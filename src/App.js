@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { Container } from "react-bootstrap";
 import HomePage from "./components/pages/home/HomePage";
