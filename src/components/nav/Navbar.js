@@ -25,6 +25,7 @@ function MainNavbar({ setSearch, search }) {
       data-bs-theme="dark"
       expand="lg"
       className="bg-body-tertiary"
+      fixed="top"
     >
       <Container>
         <Navbar.Brand>
