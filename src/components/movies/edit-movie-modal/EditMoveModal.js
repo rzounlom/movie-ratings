@@ -8,7 +8,7 @@ import { updateMovie } from "../../../lib/services/movies-service";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
-const EditMoveModal = ({ movie, fetchMovie }) => {
+const EditMoveModal = ({ movie }) => {
   const history = useHistory(); //Hook to get the history object
   const [loading, setLoading] = useState(false); //State to store the loading status
   const [show, setShow] = useState(false);

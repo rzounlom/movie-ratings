@@ -1,11 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-import { getMovies } from "../../lib/services/movies-service";
+import { getMovie, getMovies } from "../../lib/services/movies-service";
 
 export const getMoviesAsync = createAsyncThunk(
   "movies/getAllMoveies",
   async () => {
     const movies = await getMovies();
+
+    return movies;
+  }
+);
+
+export const getMovieAsync = createAsyncThunk(
+  "movies/getSingleMovie",
+  async (id) => {
+    const movies = await getMovie(id);
 
     return movies;
   }
@@ -19,10 +27,7 @@ const initialState = {
   tvShows: [],
   movieSearch: "",
   filteredMovies: [],
-  singleMovie: {
-    movie: null,
-    loading: false,
-  },
+  singleMovie: null,
 };
 
 export const moviesSlice = createSlice({
@@ -57,10 +62,24 @@ export const moviesSlice = createSlice({
       state.tvShows = action.payload.filter(
         (movie) => movie.type === "tv series"
       );
-      state.allMovies.loading = false;
+      state.loading = false;
     });
 
     builder.addCase(getMoviesAsync.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
+
+    builder.addCase(getMovieAsync.pending, (state) => {
+      state.loading = true;
+    });
+
+    builder.addCase(getMovieAsync.fulfilled, (state, action) => {
+      state.singleMovie = action.payload;
+      state.loading = false;
+    });
+
+    builder.addCase(getMovieAsync.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     });

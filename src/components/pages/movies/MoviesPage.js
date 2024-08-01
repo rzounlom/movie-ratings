@@ -1,33 +1,20 @@
 import "./MoviesPage.css";
 
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import LoadSpinner from "../../common/LoadSpinner";
 import MovieList from "../../movies/movie-list/MovieList";
-import { getMovies } from "../../../lib/services/movies-service";
+import { getMoviesAsync } from "../../../features/movies/moviesSlice";
+import { useEffect } from "react";
 
 const MoviesPage = () => {
-  const [movies, setMovies] = useState([]); //State to store all the movies
-  const [loading, setLoading] = useState(false); //State to store the loading status
-
-  const getFilteredMovies = async () => {
-    //A function to get all the movies from the API with type movie
-    try {
-      setLoading(true);
-
-      const movies = await getMovies();
-      const filteredMovies = movies.filter((movie) => movie.type === "movie"); //Filter the movies to get only the movies
-      setMovies(filteredMovies); //Set the filtered movies to the state
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const dispatch = useDispatch();
+  const movies = useSelector((state) => state.movies.moviePageMovies);
+  const loading = useSelector((state) => state.movies.loading);
 
   useEffect(() => {
-    getFilteredMovies(); //Call the function to get the movies when the component first mounts
-  }, []);
+    dispatch(getMoviesAsync());
+  }, [dispatch]);
 
   return (
     <div className="movies-page">
