@@ -11,9 +11,9 @@ import { useEffect } from "react";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const movies = useSelector((state) => state.movies.allMovies.movies);
-  const loading = useSelector((state) => state.movies.allMovies.loading);
-  const error = useSelector((state) => state.movies.allMovies.error);
+  const movies = useSelector((state) => state.movies.allMovies);
+  const loading = useSelector((state) => state.loading);
+  const error = useSelector((state) => state.movies.error);
   const filteredMovies = useSelector((state) => state.movies.filteredMovies);
 
   useEffect(() => {

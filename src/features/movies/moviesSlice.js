@@ -12,13 +12,17 @@ export const getMoviesAsync = createAsyncThunk(
 );
 
 const initialState = {
-  allMovies: {
-    movies: [],
-    loading: false,
-    error: null,
-  },
+  allMovies: [],
+  loading: false,
+  error: null,
+  moviePageMovies: [],
+  tvShows: [],
   movieSearch: "",
   filteredMovies: [],
+  singleMovie: {
+    movie: null,
+    loading: false,
+  },
 };
 
 export const moviesSlice = createSlice({
@@ -27,33 +31,38 @@ export const moviesSlice = createSlice({
   reducers: {
     setFilteredMovies(state, action) {
       if (state.movieSearch === "") {
-        state.filteredMovies = state.allMovies.movies;
+        state.filteredMovies = state.movies;
         return;
       }
 
-      state.filteredMovies = state.allMovies.movies.filter((movie) =>
+      state.filteredMovies = state.allMovies.filter((movie) =>
         movie.title.toLowerCase().includes(state.movieSearch.toLowerCase())
       );
     },
     setMovieSearch(state, action) {
       state.movieSearch = action.payload;
-      setFilteredMovies(state, action);
     },
   },
   extraReducers: (builder) => {
     builder.addCase(getMoviesAsync.pending, (state, action) => {
-      state.allMovies.loading = true;
+      state.loading = true;
     });
 
     builder.addCase(getMoviesAsync.fulfilled, (state, action) => {
-      state.allMovies.movies = action.payload;
+      state.allMovies = action.payload;
       state.filteredMovies = action.payload;
+      state.moviePageMovies = action.payload.filter(
+        (movie) => movie.type === "movie"
+      );
+      state.tvShows = action.payload.filter(
+        (movie) => movie.type === "tv series"
+      );
       state.allMovies.loading = false;
     });
 
     builder.addCase(getMoviesAsync.rejected, (state, action) => {
-      state.allMovies.loading = false;
-      state.allMovies.error = action.error.message;
+      state.loading = false;
+      state.error = action.error.message;
     });
   },
 });
