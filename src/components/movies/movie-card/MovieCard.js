@@ -16,7 +16,10 @@ const MovieCard = ({ movie }) => {
       text="light"
       style={{ width: "18rem" }}
     >
-      <Card.Img variant="top" src={movie.imgUrl} />
+      <Link to={`/movie/${movie.id}`}>
+        <Card.Img variant="top" src={movie.imgUrl} />
+      </Link>
+
       <Card.Body>
         <Card.Body className="movie-rating">
           <MdOutlineStar size="2rem" /> {caluculateRating(movie.ratings)}{" "}

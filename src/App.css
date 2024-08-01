@@ -25,3 +25,10 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(0, 170, 162);
 }
+
+.home-page,
+.single-movie-page,
+.movies-page,
+.tv-series-page {
+  margin-top: 56px;
+}
