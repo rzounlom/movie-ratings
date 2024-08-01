@@ -14,7 +14,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useLocation } from "react-router-dom";
 
-function MainNavbar({ setSearch, search }) {
+function MainNavbar() {
   const dispatch = useDispatch();
   const movieSearch = useSelector((state) => state.movies.movieSearch);
   const location = useLocation(); //Hook to get the current location (URL)
@@ -25,7 +25,9 @@ function MainNavbar({ setSearch, search }) {
     dispatch(setFilteredMovies());
   };
 
-  const handleSubmit = (e) => e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <Navbar
@@ -57,7 +59,7 @@ function MainNavbar({ setSearch, search }) {
               <Form.Control
                 onChange={handleSearch}
                 onSubmit={handleSubmit}
-                type="search"
+                type="text"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"

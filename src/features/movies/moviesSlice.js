@@ -26,7 +26,6 @@ export const moviesSlice = createSlice({
   initialState,
   reducers: {
     setFilteredMovies(state, action) {
-      console.log({ action });
       if (state.movieSearch === "") {
         state.filteredMovies = state.allMovies.movies;
         return;
