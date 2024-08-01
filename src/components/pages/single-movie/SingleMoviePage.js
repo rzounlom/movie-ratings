@@ -1,13 +1,12 @@
 import "./SingleMoviePage.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 
 import { Container } from "react-bootstrap";
 import LoadSpinner from "../../common/LoadSpinner";
 import MovieTrailer from "../../movies/movie-trailer/MovieTrailer";
-import { getMovie } from "../../../lib/services/movies-service";
 import { getMovieAsync } from "../../../features/movies/moviesSlice";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const SingleMoviePage = () => {
