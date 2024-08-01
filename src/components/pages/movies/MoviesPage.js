@@ -14,6 +14,7 @@ const MoviesPage = () => {
     //A function to get all the movies from the API with type movie
     try {
       setLoading(true);
+
       const movies = await getMovies();
       const filteredMovies = movies.filter((movie) => movie.type === "movie"); //Filter the movies to get only the movies
       setMovies(filteredMovies); //Set the filtered movies to the state

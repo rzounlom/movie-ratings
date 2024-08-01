@@ -1,5 +1,11 @@
 import "./Navbar.css";
 
+import {
+  setFilteredMovies,
+  setMovieSearch,
+} from "../../features/movies/moviesSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 import Container from "react-bootstrap/Container";
 import CreateMovieModal from "../movies/create-movie-modal/CreateMovieModal";
 import Form from "react-bootstrap/Form";
@@ -9,15 +15,17 @@ import Navbar from "react-bootstrap/Navbar";
 import { useLocation } from "react-router-dom";
 
 function MainNavbar({ setSearch, search }) {
+  const dispatch = useDispatch();
+  const movieSearch = useSelector((state) => state.movies.movieSearch);
   const location = useLocation(); //Hook to get the current location (URL)
 
   //Function to handle the search input
   const handleSearch = (e) => {
-    setSearch(e.target.value);
-    // console.log("search from Navbar:", search);
+    dispatch(setMovieSearch(e.target.value));
+    dispatch(setFilteredMovies());
   };
 
-  // console.log("location from Navbar:", location);
+  const handleSubmit = (e) => e.preventDefault();
 
   return (
     <Navbar
@@ -48,11 +56,12 @@ function MainNavbar({ setSearch, search }) {
             {location.pathname === "/" && ( // Only show search input on the home page
               <Form.Control
                 onChange={handleSearch}
+                onSubmit={handleSubmit}
                 type="search"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
-                value={search}
+                value={movieSearch}
               />
             )}
           </Form>

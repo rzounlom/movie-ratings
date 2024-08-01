@@ -1,48 +1,28 @@
 import "./HomePage.css";
 
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import FeaturedMovies from "../../movies/featured-movies/FeaturedMovies";
 import LoadSpinner from "../../common/LoadSpinner";
 import MovieList from "../../movies/movie-list/MovieList";
-import { getMovies } from "../../../lib/services/movies-service";
+import { getMoviesAsync } from "../../../features/movies/moviesSlice";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
-const HomePage = ({ search }) => {
-  const [movies, setMovies] = useState([]); //State to store all the movies
-  const [filteredMovies, setFilteredMovies] = useState([]); //State to store the filtered movies based on the seasrch from the Navbar
-  const [loading, setLoading] = useState(false); //State to store the loading status
-
-  const getAllMovies = async () => {
-    //A function to get all the movies from the API
-    try {
-      setLoading(true);
-      const movies = await getMovies();
-      setMovies(movies); //Set the movies to the state
-      setFilteredMovies(movies); //Set the movies to the filteredMovies state initially
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+const HomePage = () => {
+  const dispatch = useDispatch();
+  const movies = useSelector((state) => state.movies.allMovies.movies);
+  const loading = useSelector((state) => state.movies.allMovies.loading);
+  const error = useSelector((state) => state.movies.allMovies.error);
+  const filteredMovies = useSelector((state) => state.movies.filteredMovies);
 
   useEffect(() => {
-    getAllMovies(); //Call the function to get all the movies when the component mounts
-  }, []);
+    dispatch(getMoviesAsync());
+  }, [dispatch]);
 
-  useEffect(() => {
-    //Filter the movies based on the search from the Navbar
-    // console.log("search from HomePage:", search);
-    if (search) {
-      //If there is a search term, filter the movies based on the search term
-      const filteredMovies = movies.filter((movie) =>
-        movie.title.toLowerCase().includes(search.toLowerCase())
-      );
-      setFilteredMovies(filteredMovies); //Set the filtered movies to the state
-    } else {
-      setFilteredMovies(movies); //If there is no search term, set the movies to the state
-    }
-  }, [search, movies]); //Call the function when the search term or movies change
+  if (error) {
+    toast.error(error);
+  }
 
   return (
     <div className="home-page">
